@@ -1,0 +1,4 @@
+mkdir -p /scratch/squid_cache
+mkdir -p /scratch/squid_logs
+chown squid:squid /scratch/squid_cache /scratch/squid_logs
+
