@@ -1,0 +1,31 @@
+name: utatlast3-openstack
+summary: Appliance with CERN ATLAS software stack set up.  Comes with CVMFS, Frontier-Squid, and Condor. OpenStack-specific customizations.
+version: 1
+release: 1
+appliances:
+  - utatlast3
+repos:
+  - name: "EPEL"
+    baseurl: "http://mirror.utexas.edu/epel/#OS_VERSION#/#BASE_ARCH#"
+packages:
+  - curl
+  - cloud-init
+#plugins:
+#  openstack:
+#    host: 10.142.0.120
+#    port: 9292
+#    schema: http
+#    overwrite: true
+#    public: false
+files:
+  "/":
+    - "etc/sysconfig/network"
+post:
+  base:
+    - "chown root:root /etc/sysconfig/network"
+#    - "mkdir /root/.ssh"
+#    - "mkdir /scratch"
+#    - "echo '/dev/hdb /scratch ext2 defaults 0 0' >> /etc/fstab"
+#    - "/sbin/chkconfig frontier-squid on"
+#    - "chown squid:squid /etc/squid/customize.sh"
+#    #- "chmod u+x /etc/squid/customize.sh"

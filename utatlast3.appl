@@ -39,16 +39,23 @@ packages:
   - dhclient
   - krb5-workstation
   - rsync
+  - nano
+  - ntp
 files:
   "/":
     - "etc/cvmfs/default.local"
     - "etc/squid/customize.sh"
     - "etc/sysconfig/frontier-squid"
+    - "etc/condor/condor_config.local"
 post:
   base:
     - "mkdir /root/.ssh"
     - "mkdir /scratch"
     - "echo '/dev/hdb /scratch ext2 defaults 0 0' >> /etc/fstab"
     - "/sbin/chkconfig frontier-squid on"
+    - "/sbin/chkconfig ntpd on"
     - "chown squid:squid /etc/squid/customize.sh"
+    - "chown root:root /etc/condor/*"
+    - "chown root:root /etc/sysconfig/frontier-squid"
+    - "chown root:root /etc/cvmfs/default.local"
     #- "chmod u+x /etc/squid/customize.sh"
