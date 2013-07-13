@@ -41,6 +41,10 @@ packages:
   - rsync
   - nano
   - ntp
+  - libXft
+  - man
+  - yum
+  - iftop
 files:
   "/":
     - "etc/cvmfs/default.local"
