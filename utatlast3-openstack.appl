@@ -4,12 +4,6 @@ version: 1
 release: 1
 appliances:
   - utatlast3
-repos:
-  - name: "EPEL"
-    baseurl: "http://mirror.utexas.edu/epel/#OS_VERSION#/#BASE_ARCH#"
-packages:
-  - curl
-  - cloud-init
 #plugins:
 #  openstack:
 #    host: 10.142.0.120
@@ -23,9 +17,3 @@ files:
 post:
   base:
     - "chown root:root /etc/sysconfig/network"
-#    - "mkdir /root/.ssh"
-#    - "mkdir /scratch"
-#    - "echo '/dev/hdb /scratch ext2 defaults 0 0' >> /etc/fstab"
-#    - "/sbin/chkconfig frontier-squid on"
-#    - "chown squid:squid /etc/squid/customize.sh"
-#    #- "chmod u+x /etc/squid/customize.sh"

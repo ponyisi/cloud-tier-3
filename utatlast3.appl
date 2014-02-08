@@ -19,17 +19,20 @@ repos: # Set defaults to UT mirror
   - name: "htcondor-stable"
     baseurl: "http://research.cs.wisc.edu/htcondor/yum/stable/rhel5"
   - name: "cernvm"
-    baseurl: "http://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs/#BASE_ARCH#/"
+    baseurl: "https://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs/EL/#OS_VERSION#/#BASE_ARCH#/"
   - name: "cern-frontier"
     baseurl: "http://frontier.cern.ch/dist/rpms/"
+  - name: "EPEL"
+    baseurl: "http://mirror.utexas.edu/epel/#OS_VERSION#/#BASE_ARCH#"
 hardware:
   partitions:
     "/":
-      size: 5 # 5 GB
+      size: 20 # 20 GB
 packages:
   - @core
   - @editors
   - cvmfs-auto-setup
+  - cloud-init
   - condor
   - frontier-squid
   - openssh-clients
@@ -45,6 +48,11 @@ packages:
   - man
   - yum
   - iftop
+  - make
+  - glibc-devel
+  - gmp
+  - gcc-c++
+  - puppet
 files:
   "/":
     - "etc/cvmfs/default.local"
