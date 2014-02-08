@@ -1,0 +1,80 @@
+name: utatlast3-centos6
+summary: Appliance with CERN ATLAS software stack set up.  Comes with CVMFS, Frontier-Squid, and Condor.
+version: 1
+release: 1
+os:
+  name: centos
+  version: 6
+#  release: 9
+default_repos: false
+repos: # Set defaults to UT mirror
+  - name: "CentOS-Base"
+    baseurl: "http://mirror.utexas.edu/centos/#OS_VERSION#/os/#BASE_ARCH#/"
+  - name: "CentOS-Updates"
+    baseurl: "http://mirror.utexas.edu/centos/#OS_VERSION#/updates/#BASE_ARCH#/"
+#  - name: "CentOS-ATrpms"
+#    baseurl: "http://dl.atrpms.net/el#OS_VERSION#-#BASE_ARCH#/atrpms/stable"
+  - name: "htcondor-stable"
+    baseurl: "http://research.cs.wisc.edu/htcondor/yum/stable/rhel6"
+  - name: "cernvm"
+    baseurl: "https://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs/#BASE_ARCH#/"
+  - name: "cern-frontier"
+    baseurl: "http://frontier.cern.ch/dist/rpms/"
+  - name: "EPEL"
+    baseurl: "http://mirror.utexas.edu/epel/#OS_VERSION#/#BASE_ARCH#"
+hardware:
+  partitions:
+    "/":
+      size: 20 # 20 GB
+packages:
+  - @core
+  - @editors
+  - cvmfs
+  - condor
+  - frontier-squid
+  - openssh-clients
+  - openssh-server
+  - wget
+  - autofs
+  - dhclient
+  - krb5-workstation
+  - rsync
+  - nano
+  - ntp
+  - libXft
+  - man
+  - yum
+  - iftop
+  - make
+  - glibc-devel
+  - gmp
+  - gcc-c++
+  - gcc-gfortran
+  - puppet
+  - curl
+  - cloud-init
+  - cloud-utils
+  - cloud-utils-growpart
+files:
+  "/":
+    - "etc/cvmfs/default.local"
+    - "etc/squid/customize.sh"
+    - "etc/sysconfig/frontier-squid"
+    - "etc/condor/condor_config.local"
+    - "etc/sysconfig/network"
+post:
+  base:
+    - "mkdir /root/.ssh"
+    - "mkdir /scratch"
+    - "echo '/dev/hdb /scratch ext2 defaults 0 0' >> /etc/fstab"
+    - "echo /cvmfs /etc/auto.cvmfs >> /etc/auto.master"
+    - "echo user_allow_other >> /etc/fuse.conf"
+    - "/sbin/chkconfig frontier-squid on"
+    - "/sbin/chkconfig ntpd on"
+    - "chown squid:squid /etc/squid/customize.sh"
+    - "chown root:root /etc/condor/*"
+    - "chown root:root /etc/sysconfig/frontier-squid"
+    - "chown root:root /etc/cvmfs/default.local"
+    - "chown root:root /etc/fuse.conf"
+    - "chown root:root /etc/sysconfig/network"
+
