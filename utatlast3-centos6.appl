@@ -74,6 +74,7 @@ post:
     - "echo user_allow_other >> /etc/fuse.conf"
     - "/sbin/chkconfig frontier-squid on"
     - "/sbin/chkconfig ntpd on"
+    - "/sbin/chkconfig puppet on"
     - "chown squid:squid /etc/squid/customize.sh"
     - "chown root:root /etc/condor/*"
     - "chown root:root /etc/sysconfig/frontier-squid"
