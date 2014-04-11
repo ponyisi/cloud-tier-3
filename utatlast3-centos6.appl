@@ -62,8 +62,11 @@ files:
     - "etc/sysconfig/frontier-squid"
     - "etc/condor/condor_config.local"
     - "etc/sysconfig/network"
+    - "linux-rootfs-resize"
 post:
   base:
+    - "cd /linux-rootfs-resize; ./install"
+    - "cd / ; rm -rf /linux-rootfs-resize"
     - "mkdir /root/.ssh"
     - "mkdir /scratch"
 #    - "echo '/dev/hdb /scratch ext2 defaults 0 0' >> /etc/fstab"
