@@ -66,7 +66,7 @@ post:
   base:
     - "mkdir /root/.ssh"
     - "mkdir /scratch"
-    - "echo '/dev/hdb /scratch ext2 defaults 0 0' >> /etc/fstab"
+#    - "echo '/dev/hdb /scratch ext2 defaults 0 0' >> /etc/fstab"
     - "echo /cvmfs /etc/auto.cvmfs >> /etc/auto.master"
     - "echo user_allow_other >> /etc/fuse.conf"
     - "/sbin/chkconfig frontier-squid on"
